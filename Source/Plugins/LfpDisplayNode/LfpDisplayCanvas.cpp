@@ -1000,7 +1000,8 @@ LfpDisplayOptions::LfpDisplayOptions(LfpDisplayCanvas* canvas_, LfpTimescale* ti
     addAndMakeVisible(showHideOptionsButton);
 
     // init timebases options
-    timebases.add("0.25");
+	timebases.add("0.15");  // HRK
+	timebases.add("0.25");
     timebases.add("0.5");
     timebases.add("1.0");
     timebases.add("2.0");
