@@ -33,23 +33,23 @@ ChannelMappingEditor::ChannelMappingEditor(GenericProcessor* parentNode, bool us
 {
     desiredWidth = 350;
 
-    selectAllButton = new ElectrodeEditorButton("Select All",Font("Small Text",14,Font::plain));
+    selectAllButton = new ElectrodeEditorButton("SA",Font("Small Text",14,Font::plain));
     selectAllButton->addListener(this);
     addAndMakeVisible(selectAllButton);
-    selectAllButton->setBounds(125,110,110,10);
+    selectAllButton->setBounds(245,110,25,10);
     selectAllButton->setToggleState(false, dontSendNotification);
 
-    modifyButton = new ElectrodeEditorButton("Remap",Font("Small Text",14,Font::plain));
+    modifyButton = new ElectrodeEditorButton("RM",Font("Small Text",14,Font::plain));
     modifyButton->addListener(this);
     addAndMakeVisible(modifyButton);
-    modifyButton->setBounds(220,110,60,10);
+    modifyButton->setBounds(275,110,30,10);
     modifyButton->setToggleState(false, dontSendNotification);
     modifyButton->setClickingTogglesState(true);
 
-    resetButton = new ElectrodeEditorButton("Reset", Font("Small Text",14,Font::plain));
+    resetButton = new ElectrodeEditorButton("RS", Font("Small Text",14,Font::plain));
     resetButton->addListener(this);
     addAndMakeVisible(resetButton);
-    resetButton->setBounds(285,110,60,10);
+    resetButton->setBounds(310,110,30,10);
     resetButton->setToggleState(true, dontSendNotification);
     resetButton->setClickingTogglesState(false);
     resetButton->setEnabled(false);
@@ -81,13 +81,13 @@ ChannelMappingEditor::ChannelMappingEditor(GenericProcessor* parentNode, bool us
         ElectrodeButton* button = new ElectrodeButton(i+1);
         referenceButtons.add(button);
 
-        button->setBounds(10+i*30,110,20,15);
+        button->setBounds(10+i*28,110,24,15);
         button->setToggleState(false, dontSendNotification);
         button->setRadioGroupId(900);
 
         addAndMakeVisible(button);
         button->addListener(this);
-        button->setButtonText(String::charToString('A'+i));
+        button->setButtonText(String::charToString('0'+i));
 
     }
 

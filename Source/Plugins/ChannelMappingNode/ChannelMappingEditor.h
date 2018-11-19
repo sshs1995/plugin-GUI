@@ -28,7 +28,7 @@
 #include "../../../JuceLibraryCode/JuceHeader.h"
 #include <EditorHeaders.h>
 
-#define NUM_REFERENCES 4
+#define NUM_REFERENCES 8
 
 /**
 
