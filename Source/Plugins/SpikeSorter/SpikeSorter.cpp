@@ -915,24 +915,56 @@ void SpikeSorter::process(AudioSampleBuffer& buffer)
                         if (bSpikeDetectedPositive)
                         {
                             // find localmaxima
-                            while (getCurrentSample(currentChannel) < getNextSample(currentChannel) &&
+                            /*
+							                     while (getCurrentSample(currentChannel) < getNextSample(currentChannel) &&
                                    sampleIndex < peakIndex + electrode->postPeakSamples)
                             {
                                 sampleIndex++;
                             }
+							                     */
+
+            							// HRK. find maximum between current - postpeaksamples
+            							int peakIndex = sampleIndex;
+            							float tempMax = 0;
+            							for (int j = 0; j <= electrode->postPeakSamples; j++)
+            							{
+            								sampleIndex++;
+            								if (tempMax < getCurrentSample(currentChannel))
+            								{
+            									tempMax = getCurrentSample(currentChannel);
+            									peakIndex = sampleIndex;
+            								}
+            							}
+
                         }
                         else
                         {
                             // find local minimum
 
-                            while (getCurrentSample(currentChannel) > getNextSample(currentChannel) &&
+                            /*
+							                     while (getCurrentSample(currentChannel) > getNextSample(currentChannel) &&
                                    sampleIndex < peakIndex + electrode->postPeakSamples)
                             {
                                 sampleIndex++;
                             }
+							*/
+            							// HRK.find minimum between current - postpeaksamples
+            								int peakIndex = sampleIndex;
+            							float tempMin = 0;
+            							for (int j = 0; j <= electrode->postPeakSamples; j++)
+            							{
+            								sampleIndex++;
+            								if (tempMin > getCurrentSample(currentChannel))
+            								{
+            									tempMin = getCurrentSample(currentChannel);
+            									peakIndex = sampleIndex;
+            								}
+            							}
+
                         }
 
-                        peakIndex = sampleIndex;
+                        //peakIndex = sampleIndex;
+						            sampleIndex = peakIndex; // HRK
                         sampleIndex -= (electrode->prePeakSamples+1);
 
 						const SpikeChannel* spikeChan = getSpikeChannel(i);
@@ -1937,4 +1969,3 @@ int ContinuousCircularBuffer::GetPtr()
 }
 
 /************************************************************/
-
