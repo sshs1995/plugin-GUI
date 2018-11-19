@@ -319,8 +319,12 @@ void SpikeSorterEditor::buttonEvent(Button* button)
 
         waveSizePreMenu.addItem(1,"8",true,processor->getNumPreSamples() == 8);
         waveSizePreMenu.addItem(2,"16",true,processor->getNumPreSamples() == 16);
+		waveSizePreMenu.addItem(10, "13", true, processor->getNumPreSamples() == 13); // HRK
+
         waveSizePostMenu.addItem(3,"32",true,processor->getNumPostSamples() == 32);
         waveSizePostMenu.addItem(4,"64",true,processor->getNumPostSamples() == 64);
+		waveSizePostMenu.addItem(11, "27", true, processor->getNumPostSamples() == 27); // HRK
+
 
         waveSizeMenu.addSubMenu("Pre samples",waveSizePreMenu);
         waveSizeMenu.addSubMenu("Post samples",waveSizePostMenu);
@@ -354,6 +358,12 @@ void SpikeSorterEditor::buttonEvent(Button* button)
             case 7:
                 processor->setFlipSignalState(!processor->getFlipSignalState());
                 break;
+			case 10:		// HRK
+				processor->setNumPreSamples(13);
+				break;
+			case 11:		// HRK
+				processor->setNumPostSamples(27);
+				break;
         }
 
     }
